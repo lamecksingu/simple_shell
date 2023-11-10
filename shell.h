@@ -12,5 +12,7 @@ extern char **environ;
 void prompt(void);
 char *user_input(void);
 int execute_command(const char *command);
+char **tokenize(const char *str, const char *delim, int *count);
+void free_tokens(char **tokens, int count);
 
 #endif
