@@ -8,6 +8,7 @@
 int main(int argc, char *argv[])
 {
 	char *command;
+	const char *path = "/bin/";
 	int err;
 
 	if (argc == 0)
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
 		{
 			command[strlen(command) - 1] = '\0';
 		}
-		err = execute_command(command);
+		err = execute_command(command, path);
 		free(command);
 		if (err == -1)
 		{
