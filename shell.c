@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
 		{
 			free(command);
 			exit_shell();
+		} else if (strcmp(command, "env") == 0)
+		{
+			env_builtin();
 		}
 		err = execute_command(command, path);
 		free(command);
