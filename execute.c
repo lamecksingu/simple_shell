@@ -12,10 +12,8 @@ int execute_command(const char *command, const char *path)
 	int status, arg_count;
 	char *full_path;
 
-	if (command == NULL || path == NULL)
-	{
-		return (-1);
-	}
+	check_command(command, path);/*make sure the arguments*/
+				      /* does not point to NULL*/
 	args = tokenize(command, " ", &arg_count);/*tokenize the command string*/
 	if (args == NULL)
 	{
@@ -114,11 +112,12 @@ int execute_child_process(const char *full_path, char **args)
 /**
  * check_command - a function to check if the command is NULL or not
  * @command: the command provided
+ * @path: path to the executable
  * Return: -1 if command is NULL and 0 if command is not NULL
  */
-int check_command(const char *command)
+int check_command(const char *command, const char *path)
 {
-	if (command == NULL)
+	if (command == NULL || path == NULL)
 	{
 		write(STDERR_FILENO, "Invalid command\n", 24);
 		return (-1);
