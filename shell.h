@@ -16,6 +16,7 @@ char **tokenize(const char *str, const char *delim, int *count);
 void free_tokens(char **tokens, int count);
 char *find_command_path(const char *command, const char *path);
 int execute_child_process(const char *full_path, char **args);
-int check_command(const char *command);
+int check_command(const char *command, const char *path);
+void exit_shell(void);
 
 #endif

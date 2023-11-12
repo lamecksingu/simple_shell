@@ -28,6 +28,11 @@ int main(int argc, char *argv[])
 		{
 			command[strlen(command) - 1] = '\0';
 		}
+		if (strcmp(command, "exit") == 0)
+		{
+			free(command);
+			exit_shell();
+		}
 		err = execute_command(command, path);
 		free(command);
 		if (err == -1)
