@@ -7,7 +7,7 @@ char *user_input(void)
 {
 	char *input = NULL;
 	size_t bufsize = 0;
-	ssize_t bytes_read = getline(&input, &bufsize, stdin);
+	ssize_t bytes_read = _getline(&input, &bufsize, stdin);
 
 	if (bytes_read == -1)
 	{
