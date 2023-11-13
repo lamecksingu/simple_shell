@@ -19,5 +19,8 @@ int execute_child_process(const char *full_path, char **args);
 int check_command(const char *command, const char *path);
 void exit_shell(void);
 void env_builtin(void);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void expand_buffer(char **lineptr, size_t *n, size_t required_size);
+ssize_t read_into_buffer(FILE *stream);
 
 #endif
