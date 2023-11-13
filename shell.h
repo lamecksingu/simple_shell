@@ -22,5 +22,11 @@ void env_builtin(void);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void expand_buffer(char **lineptr, size_t *n, size_t required_size);
 ssize_t read_into_buffer(FILE *stream);
+size_t _strlen(const char *str);
+char *_strcpy(char *dest, const char *src);
+size_t _strcspn(const char *str, const char *reject);
+char *_strchr(const char *str, int c);
+size_t _strspn(const char *str, const char *accept);
+char *_strtok(char *str, const char *delim);
 
 #endif
