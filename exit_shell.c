@@ -10,7 +10,7 @@ void exit_shell(const char *command)
 	if (strncmp(command, "exit", _strlen("exit")) == 0)
 	{
 		/*assuming the format is "exit status"*/
-		status = atoi(command + strlen("exit"));
+		status = atoi(command + _strlen("exit"));
 		exit(status);
 	} else if (strcmp(command, "exit") == 0)
 	{
