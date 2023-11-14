@@ -28,5 +28,9 @@ size_t _strcspn(const char *str, const char *reject);
 char *_strchr(const char *str, int c);
 size_t _strspn(const char *str, const char *accept);
 char *_strtok(char *str, const char *delim);
+int _setenv(const char *variable, const char *value);
+int _unsetenv(const char *variable);
+int h_setenv_command(const char *command);
+int h_unsetenv_command(const char *command);
 
 #endif
