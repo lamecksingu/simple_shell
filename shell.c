@@ -23,18 +23,15 @@ int main(int argc, char *argv[])
 		{
 			break;
 		}
-		/*remove the newline character*/
 		if (command[_strlen(command) - 1] == '\n')
 		{
 			command[_strlen(command) - 1] = '\0';
 		}
-		/*handle exit command*/
 		exit_shell(command);
 		if (strcmp(command, "env") == 0)
 		{
 			env_builtin();
 		}
-		/*execute other commands*/
 		err = execute_command(command, path);
 		free(command);
 		if (err == -1)
