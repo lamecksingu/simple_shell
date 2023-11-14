@@ -24,18 +24,17 @@ int main(int argc, char *argv[])
 			break;
 		}
 		/*remove the newline character*/
-		if (command[strlen(command) - 1] == '\n')
+		if (command[_strlen(command) - 1] == '\n')
 		{
-			command[strlen(command) - 1] = '\0';
+			command[_strlen(command) - 1] = '\0';
 		}
-		if (strcmp(command, "exit") == 0)
-		{
-			free(command);
-			exit_shell();
-		} else if (strcmp(command, "env") == 0)
+		/*handle exit command*/
+		exit_shell(command);
+		if (strcmp(command, "env") == 0)
 		{
 			env_builtin();
 		}
+		/*execute other commands*/
 		err = execute_command(command, path);
 		free(command);
 		if (err == -1)
