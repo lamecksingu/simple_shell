@@ -3,22 +3,24 @@
  * execute_command - a function to execute commands
  * @command: a command to be executed
  * @path: the path to the command
+ * @program_name: name of the programe eg ./hsh
  * Return: -1 on error, 0 on success
  */
-int execute_command(const char *command, const char *path)
+int execute_command(const char *command, const char *path,
+		const char *program_name)
 {
 	pid_t child_pid;/*char *command_copy;*/
 	char **args;
 	int status, arg_count;
 	char *full_path;
 
-	check_command(command, path);/*make sure the arguments*/
-				      /* does not point to NULL*/
+	/*check if command is NULL or the path*/
+	check_command(command, path);
 	args = tokenize(command, " ", &arg_count);/*tokenize the command string*/
 	if (args == NULL)
 	{
 		perror("Error tokenizing command string");
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	full_path = find_command_path(args[0], path);/*find the full path*/
 	if (full_path != NULL && access(full_path, F_OK) == 0)
@@ -28,7 +30,7 @@ int execute_command(const char *command, const char *path)
 		{
 			perror("Error in fork");
 			free_tokens(args, arg_count);/*free allocated memory*/
-			exit(1);
+			return (-1);
 		}
 		if (child_pid == 0)
 		{
@@ -42,7 +44,9 @@ int execute_command(const char *command, const char *path)
 		free(full_path);
 	} else
 	{
-		return (-1);
+		dprintf(STDERR_FILENO, "%s: No such file or directory\n", program_name);
+		free_tokens(args, arg_count);
+		return (0);
 	}
 	return (0);
 }
