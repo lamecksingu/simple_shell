@@ -4,10 +4,10 @@
  */
 void prompt(void)
 {
-	char *word = "#cisfun$ ";
+	/*char *word = "#cisfun$ ";*/
 	int err;
 
-	err = write(1, word, 9);
+	err = write(1, "#cisfun$ ", 9);
 	if (err  == -1)
 	{
 		perror("Write failed");
