@@ -32,5 +32,7 @@ int _setenv(const char *variable, const char *value);
 int _unsetenv(const char *variable);
 int h_setenv_command(const char *command);
 int h_unsetenv_command(const char *command);
+void _cd(const char *directory);
+void h_cd_command(const char *command);
 
 #endif
