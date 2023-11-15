@@ -7,9 +7,8 @@
  */
 int main(int argc, char *argv[])
 {
-	char *command;/* *args, *directory;*/
+	char *command, *token;/* *directory;*/
 	const char *path = "/bin/";
-	int err;
 
 	if (argc == 0)
 	{
@@ -27,21 +26,24 @@ int main(int argc, char *argv[])
 		{
 			command[_strlen(command) - 1] = '\0';
 		}
-		if (strcmp(command, "env") == 0)
+		token = _strtok(command, ";");
+		while (token != NULL)
 		{
-			env_builtin();
-		} else if (strncmp(command, "cd", _strlen("cd")) == 0)
-		{
-			h_cd_command(command);
-		} else
-		{
-			exit_shell(command);
-			err = execute_command(command, path, argv[0]);
-			if (err == -1)
+			if (token[0] != '\0')
 			{
-				dprintf(STDERR_FILENO, "%s: No such file or directory\n", argv[0]);
-				return (-1);
+				if (strcmp(command, "env") == 0)
+				{
+					env_builtin();
+				} else if (strncmp(command, "cd", _strlen("cd")) == 0)
+				{
+					h_cd_command(command);
+				} else
+				{
+					exit_shell(command);
+					execute_command(command, path, argv[0]);
+				}
 			}
+			token = _strtok(NULL, ";");
 		}
 		free(command);
 	}
