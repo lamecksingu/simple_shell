@@ -44,7 +44,7 @@ int execute_command(const char *command, const char *path,
 		free(full_path);
 	} else
 	{
-		dprintf(STDERR_FILENO, "%s: No such file or directory\n", program_name);
+		dprintf(STDERR_FILENO, "%s: %s: not found\n", program_name, args[0]);
 		free_tokens(args, arg_count);
 		return (0);
 	}
