@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		} else
 		{
 			exit_shell(command);
-			err = execute_command(command, path);
+			err = execute_command(command, path, argv[0]);
 			if (err == -1)
 			{
 				dprintf(STDERR_FILENO, "%s: No such file or directory\n", argv[0]);
