@@ -11,7 +11,7 @@ extern char **environ;
 
 void prompt(void);
 char *user_input(void);
-int execute_command(const char *command, const char *path);
+int execute_command(const char *command, const char *path, const char *program_name);
 char **tokenize(const char *str, const char *delim, int *count);
 void free_tokens(char **tokens, int count);
 char *find_command_path(const char *command, const char *path);
